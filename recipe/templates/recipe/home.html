@@ -1,0 +1,42 @@
+{% extends "recipe/base.html" %}
+
+
+
+{% block content %}
+
+
+<div class="mt-5">
+    <div class="mx-auto col-6">
+        <form>
+            <div class="mb-3">
+                <label class="form-label"> Search Food </label>
+                <input name="search" type="text" class="form-control">
+
+            </div>
+            <button type="submit" class="btn btn-primary"> Search </button>
+        </form>
+    </div>
+</div>
+
+<hr>
+    <h1>
+        {% for post in posts %}
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+                {% comment %} <img class="rounded-circle article-img" src="{{ post.img }}"> {% endcomment %}
+                {% comment %} <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"> {% endcomment %}
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2 text-dark" href="#">{{ post.author }}</a>
+                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                </div>
+                <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                {% comment %} <p class="article-content">{{ post.content }}</p> {% endcomment %}
+                </div>
+            </article>
+        {% endfor %} 
+    </h1>
+{% endblock content %}
+<!-- </body>
+</html> -->
+
